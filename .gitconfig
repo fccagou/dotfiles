@@ -175,9 +175,11 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = fccagou
+	email = fccagou@gmail.com
+	signingkey = 0x273D253FDC693782
 
-# Uncomment if you want fetch to also get all github pull requests, this is rather
-# large on big repos.
 #[remote "origin"]
 	#fetch = +refs/pull/*/head:refs/remotes/origin/pull/*
 
@@ -192,9 +194,4 @@
 
 [gpg]
 	program = /usr/bin/gpg2
-
-[user]
-	email='fccagou@gmail.com'
-	name='fccagou'
-
 
