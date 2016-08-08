@@ -162,9 +162,9 @@
 
 	insteadOf = "gist:"
 [user]
-	name = Jess Frazelle
-	email = me@jessfraz.com
-	signingkey = 0x18F3685C0022BFF3
+	name = fccagou
+	email = fccagou@gmail.com
+	signingkey = 0x273D253FDC693782
 #[remote "origin"]
 	#fetch = +refs/pull/*/head:refs/remotes/origin/pull/*
 [github]
