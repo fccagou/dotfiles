@@ -6,9 +6,9 @@ bin:
 	# add aliases for things in bin
 	for file in $(shell find $(CURDIR)/bin -type f -not -name "*-backlight" -not -name ".*.swp"); do \
 		f=$$(basename $$file); \
-		sudo ln -sf $$file /usr/local/bin/$$f; \
+		ln -sf $$file $(HOME)/bin/$$f; \
 	done
-	sudo ln -sf $(CURDIR)/bin/browser-exec /usr/local/bin/xdg-open; \
+	ln -sf $(CURDIR)/bin/browser-exec $(HOME)/bin/xdg-open; \
 
 dotfiles:
 	# add aliases for dotfiles
