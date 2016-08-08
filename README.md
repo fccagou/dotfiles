@@ -1,4 +1,12 @@
+
+
 ## dotfiles
+
+**Thanks:**
+
+to Jess for his work that I could have update for my personal use.
+Great Job !
+
 
 [![Travis CI](https://travis-ci.org/jfrazelle/dotfiles.svg?branch=master)](https://travis-ci.org/jfrazelle/dotfiles)
 
