@@ -2,7 +2,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
 # If not running interactively, don't do anything
 case $- in
 	*i*) ;;
@@ -91,14 +90,8 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-for file in /etc/bash_completion.d/* ; do
-	# shellcheck source=/dev/null
-	source "$file"
-done
-
-if [[ -f "${HOME}/.bash_profile" ]]; then
-	# shellcheck source=/dev/null
-	source "${HOME}/.bash_profile"
+if [[ -f $HOME/.bash_profile ]]; then
+	source $HOME/.bash_profile
 fi
 
 # use a tty for gpg
