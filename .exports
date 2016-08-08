@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Make vim the default editor
+<<<<<<< e198b7414a5b840c6c0923c0914f9de46be7c26f
 export EDITOR=/usr/bin/vim;
+=======
+#export EDITOR=/usr/bin/nvim;
+>>>>>>> export: do not force LANG or GO
 #export TERMINAL="urxvt";
 
 # Larger bash history (allow 32³ entries; default is 500)
@@ -12,14 +16,13 @@ export HISTCONTROL=ignoredups;
 #export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h:pony:pony add *:pony update *:pony save *:pony ls:pony ls *";
 
 # Prefer US English and use UTF-8
-export LANG="en_US.UTF-8";
-export LC_ALL="en_US.UTF-8";
+# export LANG="en_US.UTF-8";
+# export LC_ALL="en_US.UTF-8";
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
-
-export DBUS_SESSION_BUS_ADDRESS
-DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
+# TODO
+# export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
 
 export TODOTXT_DEFAULT_ACTION=ls
 
@@ -29,6 +32,6 @@ export GDK_DPI_SCALE=0.5
 export QT_DEVICE_PIXEL_RATIO=2
 
 # turn on go vendoring experiment
-export GO15VENDOREXPERIMENT=1
-
-export DOCKER_CONTENT_TRUST=1
+# export GO15VENDOREXPERIMENT=1
+# TODO
+# export DOCKER_CONTENT_TRUST=1
