@@ -93,9 +93,9 @@ bindsym $mod+q focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+ampersand workspace 1
-bindsym $mod+eacute workspace 2
-bindsym $mod+quotedbl workspace 3
+bindsym $mod+ampersand workspace term
+bindsym $mod+eacute workspace www
+bindsym $mod+quotedbl workspace mail
 bindsym $mod+apostrophe workspace 4
 bindsym $mod+parenleft workspace 5
 bindsym $mod+minus workspace 6
@@ -105,9 +105,9 @@ bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+eacute move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+1 move container to workspace term
+bindsym $mod+Shift+eacute move container to workspace www
+bindsym $mod+Shift+3 move container to workspace mail
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
@@ -163,3 +163,8 @@ exec xrdb -merge ~/.Xdefaults
 
 exec --no-startup-id feh --bg-scale /home/francois/Images/2011-photos/nouvelle-caledonie/Ilot\ maitre/IMG_9305.JPG
 
+exec --no-startup-id i3-msg 'workspace term; exec i3-sensible-terminal'
+# run firefox in www workspace
+exec --no-startup-id i3-msg 'workspace www; exec firefox-esr; workspace term'
+# run firefox in mail workspace
+exec --no-startup-id i3-msg 'workspace mail; exec icedove; workspace term'
