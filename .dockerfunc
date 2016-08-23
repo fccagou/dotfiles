@@ -306,6 +306,18 @@ irssi() {
 		--name irssi \
 		${DOCKER_REPO_PREFIX}/irssi
 }
+jenkins () {
+	del_stopped jenkins
+	docker run -d \
+		-p 8080:8080 -p 50000:50000 \
+		-v ${HOME}/src/jenkins:/var/jenkins_home \
+		--name jenkins \
+		jenkins
+
+	sleep 3
+	jenkins_ip="$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins)"
+	/usr/bin/firefox "http://${jenkins_ip}:8080/"
+}
 john(){
 	local file=$(realpath $1)
 
