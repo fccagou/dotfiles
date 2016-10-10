@@ -1,0 +1,103 @@
+# *filter
+# :INPUT DROP [0:0]
+# :FORWARD DROP [0:0]
+# :OUTPUT ACCEPT [0:0]
+# -A INPUT -i lo -j ACCEPT
+# -A INPUT -m conntrack --ctstate INVALID -j LOG --log-prefix "iptables denied: " --log-level 7
+# -A INPUT -m conntrack --ctstate INVALID -j DROP
+# -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# -A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+# -A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+# -A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
+# -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+# -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+# -A INPUT -j LOG --log-prefix "iptables failed, denied: " --log-level 7
+# -A INPUT -j REJECT --reject-with icmp-proto-unreachable
+# COMMIT
+
+#  LOG
+#  Remplacer ACCEPT par DROP pour mettre en prod.
+*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+:SECURITY -
+
+# ================================================================
+#   I N P U T
+# ================================================================
+
+# ----------------------------------------------------------------
+# DETECT SECURITY KNOCKS
+# ----------------------------------------------------------------
+# NULL Packet
+-A INPUT -p tcp --tcp-flags ALL NONE -j SECURITY
+# SYN FLOOD
+-A INPUT -p tcp ! --syn -m state --state NEW -j SECURITY
+# XMAS / RECON
+-A INPUT -p tcp --tcp-flags ALL ALL -j SECURITY
+
+# ----------------------------------------------------------------
+# ACCEPT ESTABLISHED CONNECTIONS
+# ----------------------------------------------------------------
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# ----------------------------------------------------------------
+# ALLOW all traffic on lo.
+# ----------------------------------------------------------------
+# en local on autorise tout.
+-A INPUT -i lo -j ACCEPT
+
+
+# -----------------------------------------------------------------
+# ALLOWED Applications
+# -----------------------------------------------------------------
+# -A INPUT -p tcp -m multiport --destination-ports 22,422 -j ACCEPT
+# -A INPUT -p udp -m multiport --destination-ports  -j ACCEPT
+# SSH
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+# ADMIN
+-A INPUT -p tcp -m tcp --dport 422 -j ACCEPT
+
+# -----------------------------------------------------------------
+# DENY  INPUT
+# -----------------------------------------------------------------
+-A INPUT -j LOG --log-prefix 'IPTABLES/DENY/INPUT' --log-level 6 --log-ip-options
+
+
+
+# ================================================================
+#   O U T P U T
+# ================================================================
+
+# -----------------------------------------------------------------
+# ALLOWED  OUTPUT
+# -----------------------------------------------------------------
+# -A OUTPUT -p tcp -m multiport --destination-ports 80,443 -j ACCEPT
+# -A OUTPUT -p udp -m multiport --destination-ports 53,123 -j ACCEPT
+# DNS
+-A OUTPUT -m udp -p udp --dport 53 -j ACCEPT
+# KERBEROS
+# LDAP
+# HTTP / HTTPS
+-A OUTPUT -m tcp -p tcp --dport 80 -j ACCEPT
+-A OUTPUT -m tcp -p tcp --dport 443 -j ACCEPT
+# NTP
+-A OUTPUT -m udp -p udp --dport 123 -j ACCEPT
+
+# -----------------------------------------------------------------
+# DENY  OUTPUT
+# -----------------------------------------------------------------
+-A OUTPUT -j LOG --log-prefix 'IPTABLES/DENY/OUTPUT' --log-level 6 --log-ip-options --log-uid
+
+
+# ================================================================
+# SECURITY
+# ================================================================
+# On logge
+-A SECURITY -j LOG --log-prefix "IPTABLES/SECURITY" --log-level 6 --log-ip-options
+-A SECURITY -j DROP
+
+COMMIT
