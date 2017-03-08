@@ -1,0 +1,13 @@
+set imap_user = "fccagou@gmail.com"
+set imap_pass = ""
+set smtp_url = "smtp://fccagou@smtp.gmail.com:587/"
+set smtp_pass = ""
+set from = "fccagou@gmail.com"
+set realname = "fccagou"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set header_cache = ~/.mutt/com.gmail.fccagou/cache/headers
+set message_cachedir = ~/.mutt/com.gmail.fccagou/cache/bodies
+set certificate_file = ~/.mutt/com.gmail.fccagou/certificates
+
