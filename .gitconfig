@@ -179,9 +179,13 @@
 	name = fccagou
 	email = fccagou@gmail.com
 	signingkey = 0x273D253FDC693782
+	#signingkey = 0x3756083A820DA476
 
 #[remote "origin"]
 	#fetch = +refs/pull/*/head:refs/remotes/origin/pull/*
+
+[github]
+	user = fccagou
 
 [commit]
 	gpgsign = false
@@ -194,4 +198,3 @@
 
 [gpg]
 	program = /usr/bin/gpg2
-
