@@ -182,4 +182,19 @@
 	#fetch = +refs/pull/*/head:refs/remotes/origin/pull/*
 
 [commit]
-	gpgsign = true
+	gpgsign = false
+
+[http]
+	cookiefile = ~/.gitcookies
+
+[init]
+	templatedir = ~/.git-templates
+
+[gpg]
+	program = /usr/bin/gpg2
+
+[user]
+	email='fccagou@gmail.com'
+	name='fccagou'
+
+
