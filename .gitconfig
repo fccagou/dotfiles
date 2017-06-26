@@ -179,8 +179,9 @@
 [user]
 	name = fccagou
 	email = fccagou@gmail.com
-	signingkey = 0x273D253FDC693782
-	#signingkey = 0x3756083A820DA476
+	#signingkey = 0x273D253FDC693782
+	# Yubikey
+	signingkey = 0x3756083A820DA476
 
 # Uncomment if you want fetch to also get all github pull requests, this is rather
 # large on big repos.
