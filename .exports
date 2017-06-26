@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # Make vim the default editor
-<<<<<<< e198b7414a5b840c6c0923c0914f9de46be7c26f
 export EDITOR=/usr/bin/vim;
-=======
-#export EDITOR=/usr/bin/nvim;
->>>>>>> export: do not force LANG or GO
 #export TERMINAL="urxvt";
 
 # Larger bash history (allow 32³ entries; default is 500)

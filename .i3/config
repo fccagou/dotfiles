@@ -104,17 +104,23 @@ bindsym $mod+underscore workspace 8
 bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace term
-bindsym $mod+Shift+eacute move container to workspace www
-bindsym $mod+Shift+3 move container to workspace mail
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+# audio controls
+bindsym XF86AudioRaiseVolume exec amixer set Master 5+ #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set Master 5- #decrease sound volume
+bindsym XF86AudioMute exec amixer set Master 1+ toggle # mute sound
+bindsym XF86AudioMicMute exec amixer set Capture toggle # mute mic
+
+# screen brightness controls
+bindsym XF86MonBrightnessUp exec sudo light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
+
+# Screenshots
+# Screenshot fullscreen
+bindsym Print exec "scrot -q 100 ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+# Screenshot with selection
+bindsym $mod+Print exec "sleep 0.4; scrot -q 100 -s ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+# Screenshot current focused window
+bindsym Shift+Print exec "scrot -q 100 -u ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -168,3 +174,6 @@ exec --no-startup-id i3-msg 'workspace term; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace www; exec firefox-esr; workspace term'
 # run firefox in mail workspace
 exec --no-startup-id i3-msg 'workspace mail; exec icedove; workspace term'
+# run the merge for good colors
+exec xrdb -merge $HOME/.Xresources
+exec xrdb -merge $HOME/.Xdefaults

@@ -10,3 +10,7 @@ set postponed = "+[Gmail]/Drafts"
 set header_cache = ~/.mutt/com.gmail.fccagou/cache/headers
 set message_cachedir = ~/.mutt/com.gmail.fccagou/cache/bodies
 set certificate_file = ~/.mutt/com.gmail.fccagou/certificates
+<<<<<<< HEAD
+=======
+
+>>>>>>> c746cb203717d0d414c47b552d37ef49b6a00425
