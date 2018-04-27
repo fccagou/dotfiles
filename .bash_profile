@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -35,5 +34,8 @@ done
 	grep -v "[?*]" | cut -d " " -f2 | \
 	tr ' ' '\n')" scp sftp ssh
 
-# print a fortune when the terminal opens
-#fortune -a -s | lolcat
+# source kubectl bash completion
+if hash kubectl 2>/dev/null; then
+	# shellcheck source=/dev/null
+	source <(kubectl completion bash)
+fi

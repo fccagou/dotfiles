@@ -10,12 +10,32 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $term urxvt
+set $menu i3-dmenu-desktop
+set $barcmd i3status
+set $lockcmd i3lock
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
+<<<<<<< HEAD
 font pango:DejaVu Sans Mono 8
+=======
+font pango:Monospace 16
+
+# HiDPI for sway
+# output eDP-1 scale 1
+
+# Inputs for sway
+# Reverse scroll
+#input "2:7:SynPS/2_Synaptics_TouchPad" {
+#    natural_scroll enabled
+#    left_handed disabled
+#    pointer_accel 0.9
+#}
+
+>>>>>>> f8805a62a80e10f2c1129fe16177c19c6eabb07c
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -27,20 +47,25 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $term
 
 # start dmenu
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec $menu
 
 # kill focused window
 bindsym $mod+Shift+A kill
 
+<<<<<<< HEAD
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+=======
+# lock screen
+bindsym $mod+l exec $lockcmd -c 111111
+>>>>>>> f8805a62a80e10f2c1129fe16177c19c6eabb07c
 
 # change focus
 bindsym $mod+j focus left
@@ -105,8 +130,8 @@ bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
 # audio controls
-bindsym XF86AudioRaiseVolume exec amixer set Master 5+ #increase sound volume
-bindsym XF86AudioLowerVolume exec amixer set Master 5- #decrease sound volume
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- #decrease sound volume
 bindsym XF86AudioMute exec amixer set Master 1+ toggle # mute sound
 bindsym XF86AudioMicMute exec amixer set Capture toggle # mute mic
 
@@ -116,18 +141,32 @@ bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
 
 # Screenshots
 # Screenshot fullscreen
+<<<<<<< HEAD
 bindsym Print exec "scrot -q 100 ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
 # Screenshot with selection
 bindsym $mod+Print exec "sleep 0.4; scrot -q 100 -s ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
 # Screenshot current focused window
 bindsym Shift+Print exec "scrot -q 100 -u ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+=======
+bindsym Print exec "scrot -q 100 ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e ${HOME}'/google-cloud-sdk/bin/gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+# Screenshot fullscreen, sway
+#bindsym Shift+Print exec "swaygrab ${HOME}/Pictures/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png"
+# Screenshot with selection
+bindsym $mod+Print exec "sleep 0.4; scrot -q 100 -s ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e ${HOME}'/google-cloud-sdk/bin/gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+# Screenshot capture, sway
+#bindsym Shift+Print exec "swaygrab -c ${HOME}/Pictures/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').webm"
+# Screenshot current focused window
+bindsym Shift+Print exec "scrot -q 100 -u ${HOME}'/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e ${HOME}'/google-cloud-sdk/bin/gsutil cp -a public-read $f gs://misc.j3ss.co/screenshots/ && echo https://misc.j3ss.co/screenshots/$n | xclip -i -selection clipboard'"
+# Screenshot current focused window, sway
+#bindsym Shift+Print exec "swaygrab --focused ${HOME}/Pictures/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png"
+>>>>>>> f8805a62a80e10f2c1129fe16177c19c6eabb07c
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -158,7 +197,12 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+<<<<<<< HEAD
         status_command i3status
+=======
+	font pango:monospace 16
+	status_command $barcmd --config ~/.i3/status.conf
+>>>>>>> f8805a62a80e10f2c1129fe16177c19c6eabb07c
 }
 
 # lock screen
@@ -169,11 +213,17 @@ exec xrdb -merge ~/.Xdefaults
 
 exec --no-startup-id feh --bg-scale /home/francois/Images/2011-photos/nouvelle-caledonie/Ilot\ maitre/IMG_9305.JPG
 
+<<<<<<< HEAD
 exec --no-startup-id i3-msg 'workspace term; exec i3-sensible-terminal'
 # run firefox in www workspace
 exec --no-startup-id i3-msg 'workspace www; exec firefox-esr; workspace term'
 # run firefox in mail workspace
 exec --no-startup-id i3-msg 'workspace mail; exec icedove; workspace term'
+=======
+# Sway backgroud
+# output "*" background ${HOME}/Pictures/central-park2.jpg fill
+
+>>>>>>> f8805a62a80e10f2c1129fe16177c19c6eabb07c
 # run the merge for good colors
 exec xrdb -merge $HOME/.Xresources
 exec xrdb -merge $HOME/.Xdefaults
